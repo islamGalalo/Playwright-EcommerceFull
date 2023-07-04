@@ -11,7 +11,7 @@ exports.RegisterPage = class RegisterPage {
         this.password = page.locator("#password");
         this.confirmPass = page.locator("#password-confirmation");
         this.cLKCreateBtn = page.locator("//button[@title='Create an Account']");
-       // this.successMsg = page.locator("//div[@class='message-success success message']") ;
+       this.successMsg = page.locator("//div[@class='message-success success message']") ;
        
 
 
@@ -32,7 +32,7 @@ exports.RegisterPage = class RegisterPage {
         await this.confirmPass.fill("Is123@g");
         await this.cLKCreateBtn.click();
      
-       // await expect((this.successMsg).textContent()).toContain('Thank you for registering with Main Website Store.')
+       await expect(this.successMsg).toContainText('Thank you for registering with Main Website Store.')
         
 
 
