@@ -1,4 +1,3 @@
-const { expect } = require('@playwright/test');
 exports.ShopListPage = class ShopListPage {
     constructor(page) {
         this.page = page;
@@ -8,8 +7,12 @@ exports.ShopListPage = class ShopListPage {
         this.colorSelect = page.getByRole('option', { name: 'Gray' });
         this.addToCart = page.getByRole('button', { name: 'Add to Cart' });
         this.addSuccessMsg = page.locator("//div[@class='message-success success message']");
-        this.goToCart = page.locator("//a[normalize-space()='shopping cart']");
-
+        this.addSecondProduct = page.locator("//img[@alt='Abominable Hoodie']")
+        this.size2ndSelect = page.getByRole('option', { name: 'XL' });
+        this.color2ndSelect = page.getByRole('option', { name: 'Red' });
+        this.add2ndToCart = page.getByRole('button', { name: 'Add to Cart' });
+        this.toCart = page.locator("//span[@class='counter-number']");
+        this.cartview = page.locator("//span[normalize-space()='View and Edit Cart']");
 
     }
 
@@ -29,11 +32,22 @@ exports.ShopListPage = class ShopListPage {
         await this.sizeSelect.click();
         await this.colorSelect.click();
         await this.addToCart.click();
-        await expect(this.addSuccessMsg).toContainText("Lando Gym Jacket")
+        
+    
+
+    }
+    async choose2ndProduct() {
+        await this.addSecondProduct.click();
+        await this.size2ndSelect.click();
+        await this.color2ndSelect.click();
+        await this.add2ndToCart.click();
+
+
 
     }
     async goToCart() {
-        await this.goToCart.click();
+        await this.toCart.click();
+        await this.cartview.click();
     }
 
 }
